@@ -1,23 +1,3 @@
-# TASK:
-#
-# Write a random tester for the Queue class.
-# The random tester should repeatedly call 
-# the Queue methods on random input in a 
-# semi-random fashion. for instance, if 
-# you wanted to randomly decide between 
-# calling enqueue and dequeue, you would 
-# write something like this:
-#
-# q = Queue(500)
-# if (random.random() < 0.5):
-#     q.enqueue(some_random_input)
-# else:
-#     q.dequeue()
-#
-# You should call the enqueue, dequeue, 
-# and checkRep methods several thousand 
-# times each.
-
 import array
 import random
 
