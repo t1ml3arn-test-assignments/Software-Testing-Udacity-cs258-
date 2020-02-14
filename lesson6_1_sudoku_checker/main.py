@@ -164,7 +164,7 @@ def grid_has_valid_elts(grid):
 
     for row in grid:
         for elt in row:
-            if elt not in range(0, 10, 1):
+            if not (elt in range(0, 10, 1) and type(elt) is int):
                 return False
 
     return True
