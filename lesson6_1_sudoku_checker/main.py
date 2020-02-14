@@ -102,7 +102,8 @@ hard = [[1,0,0,0,0,7,0,9,0],
 
 def check_sudoku(grid):
     ###Your code here.
-    assert type(grid) is list
+    if type(grid) is not list:
+        return None
     # is a 9x9 list of lists
     if grid_has_right_size(grid) is False:
         return None
@@ -152,6 +153,8 @@ def grid_has_right_size(grid):
         return False
 
     for row in grid:
+        if type(row) is not list:
+            return False
         if len(row) != 9:
             return False
     
@@ -161,7 +164,7 @@ def grid_has_valid_elts(grid):
 
     for row in grid:
         for elt in row:
-            if not (elt >= 0 and elt <= 9):
+            if elt not in range(10, 1):
                 return False
 
     return True
