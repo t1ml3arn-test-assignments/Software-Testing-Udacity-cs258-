@@ -107,7 +107,7 @@ def check_sudoku(grid):
     # is a 9x9 list of lists
     if grid_has_right_size(grid) is False:
         return None
-    # it contains only inegers in range [0, 9] 
+    # it contains only integers in range [0, 9] 
     if grid_has_valid_elts(grid) is False:
         return None
 
