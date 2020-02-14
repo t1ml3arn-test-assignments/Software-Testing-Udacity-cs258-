@@ -1,0 +1,1 @@
+In the [quiz](https://classroom.udacity.com/courses/cs258/lessons/48011996/concepts/481988720923), it was suggested to code a fuzzer to test the `sudoku checker`. It turned out there is a good one fuzzer for this - [sudoku-fuzzer-udacity](https://github.com/jtratner/sudoku-fuzzer-udacity). And it helped to find a couple of bugs in my code.
