@@ -119,6 +119,7 @@ def check_sudoku(grid):
         for row_elt in row:
             checklist[row_elt] += 1
             if row_elt != 0 and checklist[row_elt] > 1:
+                # print('non valid row', row)
                 return False
 
     # each number in the range 1..9 occurs only once in each column
@@ -132,6 +133,7 @@ def check_sudoku(grid):
             col_elt = grid[y][x]
             checklist[col_elt] += 1
             if col_elt != 0 and checklist[col_elt] > 1:
+                # print(f'non valid col {x+1}')
                 return False
     
     # each number the range 1..9 occurs only once in each of the nine
@@ -144,6 +146,7 @@ def check_sudoku(grid):
                     elt = grid[y][x]
                     checklist[elt] += 1
                     if elt != 0 and checklist[elt] > 1:
+                        # print(f'non valid square ({sub_x+1};{sub_y+1})')
                         return False
 
     return True
