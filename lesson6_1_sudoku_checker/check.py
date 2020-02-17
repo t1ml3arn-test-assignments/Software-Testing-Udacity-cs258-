@@ -169,21 +169,22 @@ def grid_has_valid_elts(grid):
 
     return True
 
-print(check_sudoku(ill_formed)) # --> None
-print (check_sudoku(valid))      # --> True
-print (check_sudoku(invalid))    # --> False
-print (check_sudoku(easy))       # --> True
-print (check_sudoku(hard))       # --> True
-# check grid with all elts are 1
-print(check_sudoku([[1]*9]*9))  # --> False
-# grid with negative value
-g = [[2, 9, 0, 0, 0, 0, 0, 7, 0],
-     [3, 0, 6, 0, 0, 8, 4, 0, 0], 
-     [8, 0, 0, 0, 4, 0, 0, 0, 2],
-     [0, 2, 0, 0, 3, 1, 0, 0, 7], 
-     [0, 0, 0, 0, 8, 0, 0, 0, 0], 
-     [1, 0, 0, 9, -5, 0, 0, 6, 0], 
-     [7, 0, 0, 0, 9, 0, 0, 0, 1], 
-     [0, 0, 1, 2, 0, 0, 3, 0, 6], 
-     [0, 3, 0, 0, 0, 0, 0, 5, 9]]
-print(check_sudoku(g))          # --> None
+def test():
+    print(check_sudoku(ill_formed)) # --> None
+    print (check_sudoku(valid))      # --> True
+    print (check_sudoku(invalid))    # --> False
+    print (check_sudoku(easy))       # --> True
+    print (check_sudoku(hard))       # --> True
+    # check grid with all elts are 1
+    print(check_sudoku([[1]*9]*9))  # --> False
+    # grid with negative value
+    g = [[2, 9, 0, 0, 0, 0, 0, 7, 0],
+        [3, 0, 6, 0, 0, 8, 4, 0, 0], 
+        [8, 0, 0, 0, 4, 0, 0, 0, 2],
+        [0, 2, 0, 0, 3, 1, 0, 0, 7], 
+        [0, 0, 0, 0, 8, 0, 0, 0, 0], 
+        [1, 0, 0, 9, -5, 0, 0, 6, 0], 
+        [7, 0, 0, 0, 9, 0, 0, 0, 1], 
+        [0, 0, 1, 2, 0, 0, 3, 0, 6], 
+        [0, 3, 0, 0, 0, 0, 0, 5, 9]]
+    print(check_sudoku(g))          # --> None
