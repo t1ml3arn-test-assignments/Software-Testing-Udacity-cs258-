@@ -101,7 +101,8 @@ hard = [[1,0,0,0,0,7,0,9,0],
         [0,0,7,0,0,0,3,0,0]]
 
 def check_sudoku(grid):
-    ###Your code here.
+    """ Returns `None` if the given `grid` cannot be sudoku grid (non 81 elts grid),
+    returns `True`, if the given sudoku `grid` is valid and `False` otherwise """
     if type(grid) is not list:
         return None
     # is a 9x9 list of lists
