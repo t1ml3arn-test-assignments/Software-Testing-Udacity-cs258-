@@ -228,9 +228,9 @@ def solve_with_bruteforce(grid):
 
 def measure_execution_time(func, message = None, *args):
     start = time.process_time()
-    func(*args)
+    result = func(*args)
     end = time.process_time()
-    msg = f'Execution of {message} took {end-start} seconds'
+    msg = f'Execution of {message} took {end-start} seconds\nResult is: {result}\n'
     print(msg)
 
 def test():
