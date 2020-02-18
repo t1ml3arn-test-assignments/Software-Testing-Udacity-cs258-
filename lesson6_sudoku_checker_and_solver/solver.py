@@ -248,3 +248,16 @@ def test_bruteforce_solver():
     print(solve_with_bruteforce(valid))
     print(solve_with_bruteforce(easy))
 
+def test_execution_time():
+    
+    easy_copy = [row[:] for row in easy]
+    measure_execution_time(solve_sudoku, 'my solver(easy)', easy_copy)
+    measure_execution_time(solve_with_bruteforce, 'udacity solver(easy)', easy)    
+    # There is noticed difference for easy case
+    # my took 0.671875 secs, udacity took 2.78125 secs
+    
+    hard_copy = [row[:] for row in hard]
+    measure_execution_time(solve_sudoku, 'my solver(hard)', hard)
+    measure_execution_time(solve_sudoku, 'udacity solver(hard)', hard_copy)
+    # ... but there is no difference for hard case
+    # both took approx. the same time (3.8125 secs)
