@@ -196,7 +196,7 @@ def solve_sudoku (grid):
                 else:
                     return solution
 
-            # if we checked all zeros 
+            # if we checked all candidates 
             # and didnt find a solution 
             # we must abort cycle (to not process next rows)
             return False
