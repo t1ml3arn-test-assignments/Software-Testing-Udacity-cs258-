@@ -196,11 +196,11 @@ def solve_sudoku (grid):
                 else:
                     return solution
 
-        # if we checked all zeros 
-        # and didnt find a solution 
-        # we must abort cycle (to not process next rows)
-        return False
-
+            # if we checked all zeros 
+            # and didnt find a solution 
+            # we must abort cycle (to not process next rows)
+            return False
+    
     return False
 
 def solve_with_bruteforce(grid):
