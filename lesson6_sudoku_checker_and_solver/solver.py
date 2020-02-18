@@ -243,3 +243,11 @@ def test():
     # print(solve_sudoku(hard))       # --> Solved grid
     print(solve_sudoku(no_soln1))   # --> False
     print(solve_sudoku(no_soln2))   # --> False
+
+def test_bruteforce_solver():
+
+    print(solve_with_bruteforce(ill_formed))
+    print(solve_with_bruteforce(invalid))
+    print(solve_with_bruteforce(valid))
+    print(solve_with_bruteforce(easy))
+
