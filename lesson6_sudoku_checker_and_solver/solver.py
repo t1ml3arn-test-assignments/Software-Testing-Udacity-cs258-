@@ -205,6 +205,26 @@ def solve_sudoku (grid):
 
     return False
 
+def solve_with_bruteforce(grid):
+    """ Bruteforce solver from course's solution """
+
+    res = check_sudoku(grid)
+    if res is None or res is False:
+        return res
+    
+    for row in range(0, 9):
+        for col in range(0, 9):
+            if grid[row][col] == 0:
+                for n in range(1,10):
+                    grid[row][col] = n
+                    solution = solve_with_bruteforce(grid)
+                    if solution is False:
+                        grid[row][col] = 0
+                    else:
+                        return solution
+                return False
+    return grid
+
 def test():
         
     print(solve_sudoku(ill_formed)) # --> None
