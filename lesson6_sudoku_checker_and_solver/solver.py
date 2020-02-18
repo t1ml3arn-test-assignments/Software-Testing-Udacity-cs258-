@@ -231,7 +231,7 @@ def measure_execution_time(func, message = None, *args):
     print(msg)
 
 def test():
-        
+
     print(solve_sudoku(ill_formed)) # --> None
     print(solve_sudoku(invalid))    # --> False
     print(solve_sudoku(valid))      # --> Unchanged grid
