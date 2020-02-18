@@ -191,7 +191,7 @@ def solve_sudoku (grid):
             for cand in candidates:
                 grid[y][x] = cand
                 solution = solve_sudoku(grid)
-                if solution is None or solution is False:
+                if solution is False:
                     grid[y][x] = 0
                 else:
                     return solution
