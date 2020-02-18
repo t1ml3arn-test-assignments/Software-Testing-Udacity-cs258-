@@ -18,6 +18,7 @@
 
 from check import check_sudoku
 import itertools
+import time
 
 # solve_sudoku should return None
 ill_formed = [[5,3,4,6,7,8,9,1,2],
@@ -224,6 +225,13 @@ def solve_with_bruteforce(grid):
                         return solution
                 return False
     return grid
+
+def measure_execution_time(func, message = None, *args):
+    start = time.process_time()
+    func(*args)
+    end = time.process_time()
+    msg = f'Execution of {message} took {end-start} seconds'
+    print(msg)
 
 def test():
         
