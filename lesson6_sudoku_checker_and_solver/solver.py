@@ -188,9 +188,6 @@ def solve_sudoku (grid):
             missed_in_square = checkset.difference(square)
             candidates.intersection_update(missed_in_square)
 
-            if len(candidates) == 0:
-                return False
-
             for cand in candidates:
                 grid[y][x] = cand
                 solution = solve_sudoku(grid)
