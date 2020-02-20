@@ -55,3 +55,46 @@ It is a way to build test cases based on random input. *Random data generator* p
 ### Input validity
 
 General problem for random testing - generating valid inputs. It is needed to keep in mind specification. Instead of pure random input, better to contain random data in some sort of predefined range. E.g. for web browser testing, just random data can be used, but the tests must also use random html generator to test parsing/rendering/js exection, in order to achive *great coverage*.
+
+### Problems with random testing
+
+There is possible that among all generated random inputs most of them cover only small part of code. I.e. most of the inputs are invalid and will be rejected by software on the early stage. There is possible also, that invalid inputs are not being rejected by the sotware and crash test suit. So there should be input validation, but it is not always possible.
+
+### Structures input
+
+Again, this is related to good and valid inputs. So, to test some API in random maner, we want not just random calls to its functions, but rather correct structured calls. Some function should be call only after another one (some action depends on other actions). Otherwise, we get useless (or even invalid) inputs, which we don't want. For example, in file system testing, *writing* or *readind* a file can be done only if the file has been *opened*. So some sequence of API's calls should be maintened.
+
+### Generating random inputs
+
+RIG basicaly consists of random-number generator and specification. E.g. credit card number generator takes some random input (card prefix) and generates other digits with Luhn' algo (specification). This kind of testing is calling **Generative random testing**. There is another way of random testing which is calling **Mutation-based random testing**. In this technique, a random mutations is applied to non-random generated input data. 
+
+Kind of mutations which can be applied:
+
+1. Random bits twisting. 
+	Some random part of input data can be modified, e.g. writing random bytes at random addresses of pdf file.
+2. Field modification.
+	This involves specifications. Mutation applied not randomly, but to specifiec fields of structured data.
+	E.g. mutations applied to fields of HTTP request
+
+### Oracles
+
+Oracle decides if a random test passes or not. It is the most important part of random testing.
+
+Possible types of oracles:
+
+1. **Weak oracles**
+	Such oracles are most useful in practice, but they offer generic properties to test
+	- application crash detection
+	- application timeout detection
+	- language rule violation (e.g. access an array element out of array bounds)
+2. **Medium oracles**
+	- assertion checks that put into programms by programmer. These checks are more application specifiec than checks in weak oracles
+3. **Strong oracles**
+	- alternative implementation of the same specification
+		- small code, written for the concrete tests
+		- different version of software under test, i.e. previous version or even more old;
+		- completely different software that implements the same spec
+	- function inverse pairs
+		Pseudocode example `D -> foo() -> D* -> foo_inv() -> D`. We have a function and its invers so some input passed in `foo()` then result of it is passed to `inv()` and this result must be the same as the initial one. E.g. `write/read` for files, `push/pop` for arrays, `ecrypt/decrypt`. However it is not always possible to get good results from that. It will be harder to use such oracles for media encoding/decoding like JPEG.
+	- null test transformation
+		We take input and transform it in such a way, that it should not affect the results. E.g. `return a + b` can be transformed into `return -(-a) + (-(-b))`
