@@ -54,4 +54,4 @@ It is a way to build test cases based on random input. *Random data generator* p
 
 ### Input validity
 
-General problem for random testing - generating valid inputs. It is needed to keep in mind specification. Instead of pure random input, better to contain random date in some sort of predefined range. E.g. for web browser testing, just random data can be used, but the tests must also use random html generator to test parsing/rendering/js exection, in order to achive more coverage.
+General problem for random testing - generating valid inputs. It is needed to keep in mind specification. Instead of pure random input, better to contain random data in some sort of predefined range. E.g. for web browser testing, just random data can be used, but the tests must also use random html generator to test parsing/rendering/js exection, in order to achive more coverage.
