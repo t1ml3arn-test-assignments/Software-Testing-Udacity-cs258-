@@ -9,6 +9,9 @@ import subprocess
 import string
 import random
 import math
+import datetime
+import os
+
 file_list = [
     "amazon-dynamo-sosp2007.pdf",
     "0706.1033v2.pdf",
@@ -18,14 +21,12 @@ file_list = [
 
 # List of applications to test
 apps = [
-    "/Applications/Adobe Reader.app/Contents/MacOS/AdobeReader",
-    "/Applications/PDF Nomad.app/Contents/MacOS/PDF Nomad"
+    ('C:/Program Files (x86)/STDU Viewer/STDUViewerApp.exe', ''),
+    ("C:/Program Files/Tracker Software/PDF Editor/PDFXEdit.exe", ''),
+    ("C:/Program Files/Mozilla Firefox/firefox.exe", '-p Pure -no-remote')
 ]
 
-fuzz_output = "fuzz.pdf"
-
-
-FuzzFactor = 250
+FuzzFactor = 256
 num_tests = 10000
 
 ########### end configuration ##########
@@ -33,24 +34,37 @@ num_tests = 10000
 
 for i in range(num_tests):
     file_choice = random.choice(file_list)
-    app = random.choice(apps)
-
+    
     buf = bytearray(open(file_choice, 'rb').read())
+    file_size = len(buf)
 
-    # start Charlie Miller code
-    numwrites = random.randrange(math.ceil((float(len(buf)) / FuzzFactor)))+1
+    # number of writes is between 1 and 1/256 of file's length
+    numwrites = random.randint(1, math.ceil(file_size/FuzzFactor))
 
     for j in range(numwrites):
         rbyte = random.randrange(256)
-        rn = random.randrange(len(buf))
-        buf[rn] = "%c" % (rbyte)
-    # end Charlie Miller code
+        rn = random.randrange(file_size)
+        buf[rn] = rbyte
+
+    # building unique name for a file
+    nb = os.path.basename(file_choice)
+    file_name = os.path.splitext(nb)[0]
+    fuzz_output = f'{file_name}_{datetime.datetime.now()}.pdf'
 
     open(fuzz_output, 'wb').write(buf)
 
-    process = subprocess.Popen([app, fuzz_output])
-
-    time.sleep(1)
-    crashed = process.poll()
-    if not crashed:
-        process.terminate()
+    for app in apps:
+        app_name = os.path.basename(app[0])
+        app_args = app[1].split(' ')
+        
+        process = subprocess.Popen([app_name, app_args, fuzz_output])
+        time.sleep(1)
+        crashed = process.poll()
+        if not crashed:
+            process.terminate()
+            # del twisted pdf from disk
+            os.remove(fuzz_output)
+        else:
+            # log the crash
+            with open('crashlog', 'a') as log:
+                log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
