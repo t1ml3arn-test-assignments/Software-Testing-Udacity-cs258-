@@ -66,5 +66,5 @@ for i in range(num_tests):
             os.remove(fuzz_output)
         else:
             # log the crash
-            with open('crashlog', 'a') as log:
+            with open('crashlog.txt', 'a') as log:
                 log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
