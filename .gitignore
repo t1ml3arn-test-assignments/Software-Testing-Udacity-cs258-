@@ -132,3 +132,8 @@ dmypy.json
 
 # pytype static type analyzer
 .pytype/
+
+# dont include pdf files for lesson8_fuzzer
+pdfs_to_test/
+lesson8_fuzzer/*.pdf
+lesson8_fuzzer/crashlog.txt
