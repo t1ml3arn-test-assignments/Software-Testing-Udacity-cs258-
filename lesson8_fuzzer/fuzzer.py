@@ -57,7 +57,7 @@ def run_tests(num_tests):
                 app_args = app[1].split(' ')
                 
                 process_args = [app_path] + app_args + [fuzz_file_name]
-                process = subprocess.Popen(process_args)
+                process = subprocess.Popen(process_args, shell=True)
                 
                 if 'firefox' in app_name:
                     time.sleep(2)
