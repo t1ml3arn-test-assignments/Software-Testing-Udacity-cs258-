@@ -80,7 +80,8 @@ def run_tests(num_tests):
                     # building unique name for a filedump
                     nb = os.path.basename(filepath)
                     file_name = os.path.splitext(nb)[0]
-                    fuzz_output = f'{file_name}_{datetime.datetime.now()}.pdf'
+                    timestamp = str(datetime.datetime.now()).replace(':', '-')
+                    fuzz_output = f'{file_name}_{timestamp}.pdf'
                     
                     # save the file
                     with open(fuzz_output, 'wb') as out:
