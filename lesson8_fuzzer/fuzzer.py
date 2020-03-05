@@ -27,7 +27,6 @@ apps = [
 ]
 
 FuzzFactor = 256
-num_tests = 10000
 
 ########### end configuration ##########
 
