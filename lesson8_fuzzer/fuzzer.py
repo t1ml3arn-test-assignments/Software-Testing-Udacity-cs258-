@@ -13,10 +13,10 @@ import datetime
 import os
 
 file_list = [
-    "amazon-dynamo-sosp2007.pdf",
-    "0706.1033v2.pdf",
-    "1203.4740v2.pdf",
-    "1207.2054v1.pdf"
+    "pdfs_to_test/BasicElectronics.pdf",
+    "pdfs_to_test/Seeing in 3-D With Just One Eye.pdf",
+    "pdfs_to_test/0706.1033v2.pdf",
+    "pdfs_to_test/1207.2054v1.pdf"
 ]
 
 # List of applications to test
