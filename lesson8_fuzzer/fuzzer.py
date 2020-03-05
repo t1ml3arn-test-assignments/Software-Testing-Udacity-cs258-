@@ -45,7 +45,7 @@ def run_tests(num_tests):
 
             file_size = len(buf)
 
-            # number of writes is between 1 and 1/256 of file's length
+            # number of writes is between 1 and 1/FuzzFactor of file's length
             numwrites = random.randint(1, math.ceil(file_size/FuzzFactor))
 
             for j in range(numwrites):
