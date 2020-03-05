@@ -70,12 +70,10 @@ def run_tests(num_tests):
                 else:
                     time.sleep(1)
                 
-                crashed = process.poll()
-                if not crashed:
-                    if 'firefox' in app_name:
-                        os.system("taskkill /f /im firefox.exe")
-                    else:
-                        process.terminate()
+                returncode = process.poll()
+                # if not returncode:
+                if returncode is None or returncode == 0:
+                    os.system(f'taskkill /f /im {app_name} /t')
                 else:
                     # building unique name for a filedump
                     nb = os.path.basename(filepath)
@@ -89,8 +87,8 @@ def run_tests(num_tests):
                     
                     # log the crash
                     with open('crashlog.txt', 'a') as log:
-                        log.write(f'{fuzz_output} crashed {app_name} with code {crashed}. There were {numwrites} bytes written into a file.\n')
-
+                        log.write(f'{fuzz_output} crashed {app_name} with code {returncode}. There were {numwrites} bytes written into a file.\n')
+                    
         print(f'Fuzzing of {filepath} is done\n')
 
 numtests = input('Enter number of test trials: ')
