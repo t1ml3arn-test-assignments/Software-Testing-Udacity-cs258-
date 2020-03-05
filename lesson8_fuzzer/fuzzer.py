@@ -34,9 +34,10 @@ fuzz_file_name = './fuzz.pdf'
 def run_tests(num_tests):
 
     for filepath in file_list:
-        print(f'fuzzing {filepath} {num_tests} times...')
+        print(f'fuzzing {filepath} {num_tests} times...\n')
+        
         for i in range(num_tests):
-            
+
             buf = bytearray(open(filepath, 'rb').read())
             file_size = len(buf)
 
@@ -51,6 +52,7 @@ def run_tests(num_tests):
             with open(fuzz_file_name, 'wb') as fuzfile:
                 fuzfile.write(buf)
 
+            print(f'Test run № {i+1}: {numwrites} bytes written into {file_size} bytes buffer')
             for app in apps:
                 app_path = app[0]
                 app_name = os.path.basename(app_path)
@@ -83,8 +85,8 @@ def run_tests(num_tests):
                     # log the crash
                     with open('crashlog.txt', 'a') as log:
                         log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
-            
-            print(f'{num_tests-(i+1)} tests left')
+
+        print(f'Fuzzing of {filepath} is done\n')
 
 numtests = input('Enter number of test trials: ')
 
