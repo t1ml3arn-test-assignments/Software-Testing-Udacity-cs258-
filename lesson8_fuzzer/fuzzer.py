@@ -58,10 +58,18 @@ def run_tests(num_tests):
                 
                 process_args = [app_path] + app_args + [fuzz_file_name]
                 process = subprocess.Popen(process_args)
-                time.sleep(2)
+                
+                if 'firefox' in app_name:
+                    time.sleep(2)
+                else:
+                    time.sleep(1)
+                
                 crashed = process.poll()
                 if not crashed:
-                    process.terminate()
+                    if 'firefox' in app_name:
+                        os.system("taskkill /f /im firefox.exe")
+                    else:
+                        process.terminate()
                 else:
                     # building unique name for a filedump
                     nb = os.path.basename(filepath)
