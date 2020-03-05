@@ -27,7 +27,7 @@ apps = [
 ]
 
 FuzzFactor = 256
-fuzz_file_name = 'fuzz.pdf'
+fuzz_file_name = './fuzz.pdf'
 
 ########### end configuration ##########
 
