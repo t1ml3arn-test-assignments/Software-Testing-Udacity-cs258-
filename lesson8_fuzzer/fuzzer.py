@@ -26,7 +26,7 @@ apps = [
     ("C:/Program Files/Mozilla Firefox/firefox.exe", '')
 ]
 
-FuzzFactor = 256
+FuzzFactor = 150
 fuzz_file_name = './fuzz.pdf'
 
 ########### end configuration ##########
