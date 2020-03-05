@@ -68,7 +68,7 @@ def run_tests(num_tests):
                 if 'firefox' in app_name:
                     time.sleep(2)
                 else:
-                    time.sleep(1)
+                    time.sleep(1.25)
                 
                 returncode = process.poll()
                 # if not returncode:
