@@ -51,10 +51,11 @@ def run_tests(num_tests):
                 fuzfile.write(buf)
 
             for app in apps:
-                app_name = os.path.basename(app[0])
+                app_path = app[0]
+                app_name = os.path.basename(app_path)
                 app_args = app[1].split(' ')
                 
-                process_args = [app_name] + app_args + [fuzz_file_name]
+                process_args = [app_path] + app_args + [fuzz_file_name]
                 process = subprocess.Popen(process_args)
                 time.sleep(1)
                 crashed = process.poll()
