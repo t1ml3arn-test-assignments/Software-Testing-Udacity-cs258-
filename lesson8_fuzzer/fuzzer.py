@@ -89,6 +89,9 @@ def run_tests(num_tests):
                     with open('crashlog.txt', 'a') as log:
                         log.write(f'{fuzz_output} crashed {app_name} with code {returncode}. There were {numwrites} bytes written into a file.\n')
                     
+                    res = input('Input something and press Enter to continue: ')
+                    print('ok, keep going')
+
         print(f'Fuzzing of {filepath} is done\n')
 
 numtests = input('Enter number of test trials: ')
