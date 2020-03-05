@@ -34,6 +34,7 @@ fuzz_file_name = 'fuzz.pdf'
 def run_tests(num_tests):
 
     for filepath in file_list:
+        print(f'fuzzing {filepath} {num_tests} times...')
         for i in range(num_tests):
             
             buf = bytearray(open(filepath, 'rb').read())
@@ -74,6 +75,8 @@ def run_tests(num_tests):
                     # log the crash
                     with open('crashlog.txt', 'a') as log:
                         log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
+            
+            print(f'{num_tests-(i+1)} tests left')
 
 numtests = input('Enter number of test trials: ')
 
