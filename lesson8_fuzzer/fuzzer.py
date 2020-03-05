@@ -94,11 +94,22 @@ def run_tests(num_tests):
 
         print(f'Fuzzing of {filepath} is done\n')
 
-numtests = input('Enter number of test trials: ')
+print('\n')
+print('!!! WARNING !!!')
+print('Run this fuzzer on a separate non-privileged profile!')
+print('Or even better, run it in a sandbox or in a virtual machine.')
+print('Otherwise it might damage your system in unpredictable and unrestorable manner.')
+print('About Firefox: fuzzer will run current profile. If you want to avoid that behavior, you need to create new FF profile and add "-p YOUR_PROFILE_NAME -no-remote" as a second item to FF tuple instead of empty line.')
+print('You have been warned.')
 
-try:
-    numtests = int(numtests)
-except:
-    numtests = 10000
+password = 'who cares'
+cont = input(f'\nType "{password}" if you want to continue: ')
+if str(cont).lower() == password:
+    numtests = input('Enter number of test trials: ')
 
-run_tests(numtests)
+    try:
+        numtests = int(numtests)
+    except:
+        numtests = 10000
+
+    run_tests(numtests)
