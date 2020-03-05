@@ -57,7 +57,7 @@ def run_tests(num_tests):
                 
                 process_args = [app_path] + app_args + [fuzz_file_name]
                 process = subprocess.Popen(process_args)
-                time.sleep(1)
+                time.sleep(2)
                 crashed = process.poll()
                 if not crashed:
                     process.terminate()
