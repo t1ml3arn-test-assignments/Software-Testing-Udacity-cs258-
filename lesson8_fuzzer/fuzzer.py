@@ -71,3 +71,12 @@ def run_tests(num_tests):
                 # log the crash
                 with open('crashlog.txt', 'a') as log:
                     log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
+
+numtests = input('Enter number of test trials: ')
+
+try:
+    numtests = int(numtests)
+except:
+    numtests = 10000
+
+run_tests(numtests)
