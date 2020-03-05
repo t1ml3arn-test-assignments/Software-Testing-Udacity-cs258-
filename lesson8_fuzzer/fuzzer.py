@@ -46,12 +46,8 @@ for i in range(num_tests):
         rn = random.randrange(file_size)
         buf[rn] = rbyte
 
-    # building unique name for a file
-    nb = os.path.basename(file_choice)
-    file_name = os.path.splitext(nb)[0]
-    fuzz_output = f'{file_name}_{datetime.datetime.now()}.pdf'
-
-    open(fuzz_output, 'wb').write(buf)
+    with open('fuzz.pdf', 'wb') as fuzfile:
+        fuzfile.write(buf)
 
     for app in apps:
         app_name = os.path.basename(app[0])
@@ -62,9 +58,16 @@ for i in range(num_tests):
         crashed = process.poll()
         if not crashed:
             process.terminate()
-            # del twisted pdf from disk
-            os.remove(fuzz_output)
         else:
+            # building unique name for a filedump
+            nb = os.path.basename(file_choice)
+            file_name = os.path.splitext(nb)[0]
+            fuzz_output = f'{file_name}_{datetime.datetime.now()}.pdf'
+            
+            # save the file
+            with open(fuzz_output, 'wb') as out:
+                out.write(buf)
+            
             # log the crash
             with open('crashlog.txt', 'a') as log:
                 log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
