@@ -88,7 +88,7 @@ def run_tests(num_tests):
                     
                     # log the crash
                     with open('crashlog.txt', 'a') as log:
-                        log.write(f'{fuzz_output} crashed {app_name} with code {crashed}\n')
+                        log.write(f'{fuzz_output} crashed {app_name} with code {crashed}. There were {numwrites} bytes written into a file.\n')
 
         print(f'Fuzzing of {filepath} is done\n')
 
