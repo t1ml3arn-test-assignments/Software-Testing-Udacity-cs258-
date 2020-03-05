@@ -37,8 +37,12 @@ def run_tests(num_tests):
         print(f'fuzzing {filepath} {num_tests} times...\n')
         
         for i in range(num_tests):
+            
+            buf = None
 
-            buf = bytearray(open(filepath, 'rb').read())
+            with open(filepath, 'rb') as source_file:
+                buf = bytearray(source_file.read())
+
             file_size = len(buf)
 
             # number of writes is between 1 and 1/256 of file's length
