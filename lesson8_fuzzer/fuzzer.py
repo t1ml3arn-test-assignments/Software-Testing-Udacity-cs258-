@@ -23,7 +23,7 @@ file_list = [
 apps = [
     ('C:/Program Files (x86)/STDU Viewer/STDUViewerApp.exe', ''),
     ("C:/Program Files/Tracker Software/PDF Editor/PDFXEdit.exe", ''),
-    ("C:/Program Files/Mozilla Firefox/firefox.exe", '-p Fresh -no-remote')
+    ("C:/Program Files/Mozilla Firefox/firefox.exe", '')
 ]
 
 FuzzFactor = 256
