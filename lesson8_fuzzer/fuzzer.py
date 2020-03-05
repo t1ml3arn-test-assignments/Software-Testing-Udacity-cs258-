@@ -27,6 +27,7 @@ apps = [
 ]
 
 FuzzFactor = 256
+fuzz_file_name = 'fuzz.pdf'
 
 ########### end configuration ##########
 
@@ -46,14 +47,14 @@ def run_tests(num_tests):
                 rn = random.randrange(file_size)
                 buf[rn] = rbyte
 
-            with open('fuzz.pdf', 'wb') as fuzfile:
+            with open(fuzz_file_name, 'wb') as fuzfile:
                 fuzfile.write(buf)
 
             for app in apps:
                 app_name = os.path.basename(app[0])
                 app_args = app[1].split(' ')
                 
-                process = subprocess.Popen([app_name, app_args, fuzz_output])
+                process = subprocess.Popen([app_name, app_args, fuzz_file_name])
                 time.sleep(1)
                 crashed = process.poll()
                 if not crashed:
