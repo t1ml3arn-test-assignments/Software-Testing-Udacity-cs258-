@@ -73,6 +73,10 @@ def run_tests(num_tests):
                 returncode = process.poll()
                 # if not returncode:
                 if returncode is None or returncode == 0:
+                    # kill the proccess with windows command TASKKILL
+                    # the command will force-kill a task with given name 
+                    # and also kill its children tasks
+                    # see more https://docs.microsoft.com/en-us/previous-versions/windows/it-pro/windows-xp/bb491009(v=technet.10)
                     os.system(f'taskkill /f /im {app_name} /t')
                 else:
                     # building unique name for a filedump
