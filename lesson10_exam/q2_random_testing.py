@@ -124,6 +124,8 @@ def random_test():
             tuple_list.append((x, 1))
             tuple_list.append(('dq', 1))
 
+    q = Queue(50)
+
     for j in range(100):
         if random.random() < 0.5:
             try:
