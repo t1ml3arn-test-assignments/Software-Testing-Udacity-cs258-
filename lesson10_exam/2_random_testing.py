@@ -100,36 +100,38 @@ class Queue:
 def random_test():
     tuple_list = []
 
-    q = Queue(500)
+    for i in range(100):
 
-    # try:
-    #     Queue(random.randint(1, 500))
-    #     q.checkRep()
-    # except:
-    #     tuple_list.append(('new', 0))
-    # else:
-    #     tuple_list.append(('new', 1))
+        q = Queue(random.randint(1,500))
 
-    for j in range(9999):
-        if random.random() < 0.5:
-            try:
-                item = random.randint(-1e6, 1e6)
-                q.enqueue(item)
-                q.checkRep()
-            except:
-                tuple_list.append((item, 1))
+        # try:
+        #     Queue(random.randint(1, 500))
+        #     q.checkRep()
+        # except:
+        #     tuple_list.append(('new', 0))
+        # else:
+        #     tuple_list.append(('new', 1))
+
+        for j in range(9999):
+            if random.random() < 0.5:
+                try:
+                    item = random.randint(-1e6, 1e6)
+                    q.enqueue(item)
+                    q.checkRep()
+                except:
+                    tuple_list.append((item, 1))
+                else:
+                    tuple_list.append((item, 0))
+
             else:
-                tuple_list.append((item, 0))
+                try:
+                    item = q.dequeue()
+                    q.checkRep()
+                except:
+                    tuple_list.append(('dq', 1))
+                else:
+                    tuple_list.append(('dq', 0))
 
-        else:
-            try:
-                item = q.dequeue()
-                q.checkRep()
-            except:
-                tuple_list.append(('dq', 1))
-            else:
-                tuple_list.append(('dq', 0))
-
-    return tuple_list
+        return tuple_list
 
 a = random_test()
