@@ -100,38 +100,48 @@ class Queue:
 def random_test():
     tuple_list = []
 
-    for i in range(100):
+    q = Queue(50)
 
-        q = Queue(random.randint(1,500))
+    # try:
+    #     Queue(random.randint(1, 500))
+    #     q.checkRep()
+    # except:
+    #     tuple_list.append(('new', 0))
+    # else:
+    #     tuple_list.append(('new', 1))
 
-        # try:
-        #     Queue(random.randint(1, 500))
-        #     q.checkRep()
-        # except:
-        #     tuple_list.append(('new', 0))
-        # else:
-        #     tuple_list.append(('new', 1))
+    # check with inverse pairs
+    for j in range(100):
+        x = random.randint(-1e6, 1e6)
+        xx = None
+        try:
+            q.enqueue(x)
+            deq_item = q.dequeue()
+            if x != xx:
+                tuple_list.append((x, 1))
+                tuple_list.append(('dq', 1))
+        except:
+            tuple_list.append((x, 1))
+            tuple_list.append(('dq', 1))
 
-        for j in range(9999):
-            if random.random() < 0.5:
-                try:
-                    item = random.randint(-1e6, 1e6)
-                    q.enqueue(item)
-                    q.checkRep()
-                except:
-                    tuple_list.append((item, 1))
-                else:
-                    tuple_list.append((item, 0))
-
+    for j in range(100):
+        if random.random() < 0.5:
+            try:
+                item = random.randint(-1e6, 1e6)
+                q.enqueue(item)
+                q.checkRep()
+            except:
+                tuple_list.append((item, 1))
             else:
-                try:
-                    item = q.dequeue()
-                    q.checkRep()
-                except:
-                    tuple_list.append(('dq', 1))
-                else:
-                    tuple_list.append(('dq', 0))
+                tuple_list.append((item, 0))
 
-        return tuple_list
+        else:
+            try:
+                item = q.dequeue()
+                q.checkRep()
+            except:
+                tuple_list.append(('dq', 1))
+            else:
+                tuple_list.append(('dq', 0))
 
-a = random_test()
+    return tuple_list
