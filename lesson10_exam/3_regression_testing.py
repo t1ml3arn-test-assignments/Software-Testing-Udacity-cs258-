@@ -18,6 +18,7 @@
 
 import array
 import random
+from q2_random_testing import random_test
 
 # Fix this Queue class
 class Queue:
@@ -92,8 +93,47 @@ inpts = [(574, 0), ('dq', 0), (991, 0), ('dq', 0), ('dq', 1),
          (690, 0), (169, 0), (730, 0), (172, 0), (161, 0),
          (966, 0), ('dq', 0), (865, 0), ('dq', 0), (348, 0)]
 
+# my inouts obtained from the Que with length of 50 item
+# and 100 operations 
+my_inputs = [
+    ('dq', 1), (589371, 0), (-268695, 0), (541886, 0), ('dq', 0), ('dq', 0), 
+    ('dq', 1), (405079, 0), ('dq', 1), (-531150, 0), ('dq', 1), ('dq', 1), ('dq', 1), 
+    (513909, 1), ('dq', 1), ('dq', 1), ('dq', 1), ('dq', 1), (787863, 1), ('dq', 1), ('dq', 1),
+    ('dq', 1), ('dq', 1), (-537996, 1), (360105, 1), ('dq', 1), ('dq', 1), (-428190, 1), 
+    ('dq', 1), ('dq', 1), ('dq', 1), ('dq', 1), (79258, 1), (-727158, 1), ('dq', 1), 
+    (481463, 1), (843062, 1), ('dq', 1), (-517396, 1), (-493170, 1), ('dq', 1), ('dq', 1), 
+    ('dq', 1), ('dq', 1), ('dq', 1), (-438600, 1), ('dq', 1), (-686404, 1), ('dq', 1), (-497777, 1), 
+    (-652995, 1), (-125500, 1), (-957709, 1), ('dq', 1), (610185, 1), ('dq', 1), ('dq', 1), ('dq', 1), 
+    ('dq', 1), (-457845, 1), ('dq', 1), ('dq', 1), ('dq', 1), (766622, 1), ('dq', 1), ('dq', 1), 
+    ('dq', 1), ('dq', 1), ('dq', 1), (-373429, 1), (-981290, 1), ('dq', 1), (986708, 1), (772179, 1), 
+    ('dq', 1), ('dq', 1), ('dq', 1), (797734, 1), (-157925, 1), ('dq', 1), (346080, 1), (-935440, 1), 
+    ('dq', 1), (110349, 1), (953659, 1), ('dq', 1), ('dq', 1), ('dq', 1), ('dq', 1), ('dq', 1), 
+    ('dq', 1), ('dq', 1), (-322941, 1), ('dq', 1), ('dq', 1), ('dq', 1), (605476, 1), (-509184, 1), 
+    (477142, 1), ('dq', 1)
+]
 
 # Write a regression tester for the Queue class
-def regression_test():
+def regression_test(inputlist):
 
-    pass
+    q = Queue(100)
+
+    for data,result in inputlist:
+        if data == 'dq':
+            q.dequeue()
+            q.checkRep()
+        else:
+            q.enqueue(data)
+            q.checkRep()
+
+# getting a fresh random testing results
+random_results = random_test()
+# print('RADNOM TESTING RESULTS:')
+# print(random_results)
+regression_test(random_results)
+regression_test(inpts)
+regression_test(my_inputs)
+
+# Some notes about this QUIZ
+# 1. It is bad. Udacity accepted WRONG answer when Que is actually not fixed properly.
+#   I guess it is designed in that way. Since QUIZ 2 focused only on push/pop and checkRep() cals
+#   so it is not possible to detect inverse call problem (when push(item), then pop() and pop() result != initial item)
