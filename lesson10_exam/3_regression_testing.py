@@ -46,6 +46,8 @@ class Queue:
         return True
 
     def dequeue(self):
+        if self.size == 0:
+            return None
         x = self.data[self.head]
         self.size -= 1
         self.head += 1
