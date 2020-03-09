@@ -37,7 +37,8 @@ class Queue:
         return self.size == self.max
 
     def enqueue(self,x):
-        x = x % 1000
+        if self.size == self.max:
+            return False
         self.data[self.tail] = x
         self.size += 1
         self.tail += 1
