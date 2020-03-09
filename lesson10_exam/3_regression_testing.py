@@ -24,7 +24,7 @@ class Queue:
     
     def __init__(self,size_max):
         assert size_max > 0
-        self.max = size_max - 1
+        self.max = size_max
         self.head = 0
         self.tail = 0
         self.size = 0
