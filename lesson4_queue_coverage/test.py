@@ -60,5 +60,6 @@ class TestQueueCoverage(unittest.TestCase):
         assert q.dequeue() == 1
         q.checkRep()
 
+# Python interp will execute unittest only if current module is main
 if __name__ == '__main__':
     unittest.main()
