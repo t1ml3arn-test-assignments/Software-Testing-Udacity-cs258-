@@ -33,14 +33,14 @@ In the example above there are 4 paths (2^2). For complex statements the number 
 
 ### When Coverage does not work
 
-If we depend on 3d party code (OS I/O) it is better to test with specification in mind, rather than use automatic metrics (like branch coverage). *Fail injection* might help to test software behavior, to simulate I/O errors etc.
+If we depend on 3d party code (OS I/O) it is better to test with specification in mind, rather than use automatic metrics (like branch coverage). *fault injection* might help to test software behavior, to simulate I/O errors etc.
 
 ### What does it mean if code is not covered
 
 1. **Infeasible code** - the code that cannot be executed.
 	It is not always a bad thing, e.g. code is good and can reach *Infeasible* part **only** if we made a mistake somewhere. It is possible to tell coverage tool to ignore infeasible code.
 2. Code not worth covering
-	Such code is simple but can be *very* hard to trigger. If we need to test this - it is better to use *fail injection* technique.
+	Such code is simple but can be *very* hard to trigger. If we need to test this - it is better to use *fault injection* technique.
 3. Inadequate test suite
 	Either test code should be improved to achive more coverage, or it can be left at is is since we don't need to get 100% coverage.
 	
