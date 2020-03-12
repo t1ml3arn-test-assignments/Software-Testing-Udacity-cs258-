@@ -1,3 +1,91 @@
+## Lesson 1
+
+The goal of testing not just in finding bugs, but in funding bugs as early as possible.
+
+### Testing in general
+
+We take some input data, pass it to SUT(software under test) and examine results. If the results is not acceptable then we found a bug.
+
+Where bugs can be found:
+
+1. In the *software under test* (SUT)
+2. In the *test* itself
+3. In the *software specification*
+4. In the *operating system*
+5. In the *hardware*
+
+>Passed tests do not mean that there are no bugs in SUT !
+
+### Input data
+
+First, it is not possible to test all the inputs (*input domain* - all the possible inputs). Therefore, second, it is hard to choose good inputs. 
+
+### Assertions
+
+Assertion is check that a property is `True`. Assertions are not errors/exceptions, they are not meant for handling, but rather they indicate that execution went wrong. Assertions should be used to check if something wrong in the logic of a programm instead of checking wrong user's input.
+
+### Specificaton
+
+Software operates under some specs. What should return `sqrt(9)` ? 3 or -3 ? In general - either or both answers are correct. But in actual code it should be strictly defined what is being returned from `sqrt()` - positive or negative. 
+
+### Fault injection
+
+We need to test how our soft responds on low-level OS/API errors, but we often cannot force those api calls to generate wrong behavior easily. What we should instead? The answer is - **fault injection** technique. So we build our test case in such a manner when we can generate some errors which we are interesting in.
+
+```py
+def faulty_open(path, mode):
+	if math.rand() < 0.2:
+		return SOME_ERROR
+	else:
+		return normal_open(path, mode)
+```
+
+As you see above, sometimes `faulty_open` generates an error. Later in some stress tests we can examine how SUT works when that errors happen. I general, such faults should not be forced to occur often.
+
+### Types of testing
+
+- White-box testing
+
+	In this scenario we can see source code of SUT, or more general - we can examine the details of the system.
+
+- Black-box testing
+
+	It is not possible to get details about the system internals in this scenario. Tests based on specification or only on assumptions how the system works.
+
+- Unit testing
+
+	In this scenario - *separate modules* (or units) is being tested independently. Units use wide range of data from input domain and also use mock objects which simulate the behavior of the larger software to which this unit belongs.
+
+- Integrations testing
+
+	This tests the modules (which has already been unit tested) in *combinations* with each other, i.e. *interfaces* between modules.
+
+- System testing
+
+	The purpose of this kind - find if a system does what it should do as a *whole*. At this level we more concerned how the system will be used, how it works with important inputs (or use cases)
+
+- Differential testing
+
+	Here we compare the results of two different implementations. It might be completely different software or one of the system under test might be just an old version of the same software.
+
+- Stress testing
+
+	The system is tested beyond(or near) its normal usage limits. Examples:
+
+	- huge number of requests to the *webserver*
+	- creation of large files or allocation of large memory block for *operationg system*
+
+	Stress testing is needed for reliability.
+
+- Random testing
+
+	The tests generate random input data and observe how the system responds for such input. The input can be just random bytes or some specialy constructed data structures.
+
+**Some hints to hold in mind when do testing**
+
+- do not want code to succeed, want it to fail
+- do not ignore weird things
+
 ## Lesson 3 - Coverage
 
 ### What is coverage
