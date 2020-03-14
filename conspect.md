@@ -1,4 +1,4 @@
-## Lesson 1
+## Unit 1 - What is testing
 
 The goal of testing not just in finding bugs, but in funding bugs as early as possible.
 
@@ -86,7 +86,7 @@ As you see above, sometimes `faulty_open` generates an error. Later in some stre
 - do not want code to succeed, want it to fail
 - do not ignore weird things
 
-## Lesson 3 - Coverage
+## Unit 2 - Coverage
 
 ### What is coverage
 
@@ -136,7 +136,7 @@ If we depend on 3d party code (OS I/O) it is better to test with specification i
 
 There are tools that allows automaticaly generate test inputs to get good *path coverage*.
 	
-## Lesson 5 - Random testing
+## Unit 3 - Random testing
 
 It is a way to build test cases based on random input. *Random data generator* produces input (and tests) for code, the tests is being executed, then results passes to *oracle*. The oracle decides if tests ok and logs its results.
 
