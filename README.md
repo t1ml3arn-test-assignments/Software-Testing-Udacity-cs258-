@@ -1,4 +1,4 @@
-# Ucacity's Software Testing course
+# Udacity's Software Testing course
 
 A course about how to make software fail.
 
